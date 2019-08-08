@@ -6,7 +6,7 @@
 "use strict";
 
 //initialize game object; 1600w x 900h
-var game = new Phaser.Game(1600, 900, Phaser.AUTO, 'phaser');
+var game = new Phaser.Game(1600, 900, Phaser.AUTO);
 
 //test state for gameplay
 var gamePlay = function(game){};
