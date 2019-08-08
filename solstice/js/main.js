@@ -68,10 +68,6 @@ Tutorial.prototype = {
 		//add counter
 		this.counter = game.add.sprite(0, 600, 'counter');
 
-		//add mug
-		this.mug = game.add.sprite(1350, 750, 'mug');
-		this.mug.anchor = new Phaser.Point(0.5, 0.5);
-
 		//add serveButton
 		this.serveB = game.add.button(250, 600, 'serveButton');
 		this.serveB.anchor = new Phaser.Point(0.5, 1);
@@ -84,6 +80,14 @@ Tutorial.prototype = {
 		this.machine.scale.setTo(0.8, 0.8);
 		this.machine.anchor = new Phaser.Point(0.5, 1);
 
+		//add mug
+		this.mug = game.add.sprite(1350, 750, 'mug');
+		this.mug.anchor = new Phaser.Point(0.5, 0.5);
+
+		//allows mug to be dragged
+		this.mug.inputEnabled = true;
+		this.mug.input.enableDrag(true);
+		
 
 	},
 	update: function(){
