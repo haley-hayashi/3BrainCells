@@ -1,6 +1,6 @@
 /* Solstice
 Team: Last 3 Brain Cells
-Hayley, Tovi, Isaiah */
+Haley, Tovi, Isaiah */
 
 //issues
 
