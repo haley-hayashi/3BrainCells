@@ -12,7 +12,21 @@ var game = new Phaser.Game(1600,900, Phaser.AUTO);
 
 //Menu state
 var MainMenu = function(game){};
-MainMenu.prototype = {}
+MainMenu.prototype = { //filled in for sake of prototype
+	init: function(){
+		this.startText
+	},
+	
+	create: function(){
+		this.scoreText = this.add.text(16, 16, 'Press [SPACE] to start', {fontSize: '32px', fill: '#f5f5f5'});
+	},
+	
+	update: function(){
+		if(this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+			game.state.start('Tutorial');
+		}
+	}
+}
 
 //---------------------------------------------------------------------------------------------------------------
 
@@ -163,4 +177,4 @@ game.state.add('Ending', Ending);
 
 
 //starting on Tutorial
-game.state.start('Tutorial');
+game.state.start('MainMenu');
