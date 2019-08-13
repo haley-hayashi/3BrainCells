@@ -76,8 +76,8 @@ Tutorial.prototype = {
 		this.textBox = game.add.sprite(50, 650, 'textBox');
 
 		//adds coffee machine
-		this.machine = game.add.sprite(game.world.width-250, 600, 'coffeeMachine');
-		this.machine.scale.setTo(0.8, 0.8);
+		this.machine = game.add.sprite(game.world.width-250, 700, 'coffeeMachine');
+		//this.machine.scale.setTo(0.8, 0.8); <--- took this out for now bc the mug fits better without it, but we can also scale the mug too - haley
 		this.machine.anchor = new Phaser.Point(0.5, 1);
 
 		//add mug
