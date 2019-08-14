@@ -56,7 +56,8 @@ PayTime.prototype = {};
 
 //Tutorial state
 var Tutorial = function(game){
-	this.cafe, this.counter, this.mug, this.serveB;
+	this.cafe, this.counter, this.mug, this.serveB, this.text;
+	this.script;
 };
 Tutorial.prototype = {
 	preload: function(){
@@ -102,10 +103,17 @@ Tutorial.prototype = {
 		this.mug.inputEnabled = true;
 		this.mug.input.enableDrag(true);
 		
+		this.script = scriptLine(1);
 
+		// TEXTTTTT
+		this.text = this.add.text(this.textBox.x + 15, this.textBox.y + 15, this.script, 
+			{fontSize: '32px', fill: '#ffffff',  align: 'left', wordWrap: true, wordWrapWidth: this.textBox.width});
 	},
 	update: function(){
-
+		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
+			this.script = scriptLine(2);
+			this.text.text = this.script;
+		}
 	}
 };
 
