@@ -12,7 +12,7 @@ var game = new Phaser.Game(1600,900, Phaser.AUTO);
 
 //Menu state
 var MainMenu = function(game){
-	this.startText;
+	this.startText, this.titleText;
 };
 MainMenu.prototype = {
 	preload: function(){
@@ -30,7 +30,8 @@ MainMenu.prototype = {
 	},
 	
 	create: function(){
-		this.scoreText = this.add.text(16, 16, 'Press [SPACE] to start', {fontSize: '32px', fill: '#f5f5f5'});
+		this.scoreText = this.add.text(16, 16, 'Press [SPACE] to start and to go through the dialogue.', {fontSize: '32px', fill: '#f5f5f5'});
+		this.titleText = this.add.text(750, 400, 'Solstice', {fontSize: '40px', fill: '#f5f5f5'})
 	},
 	
 	update: function(){
@@ -75,6 +76,7 @@ Tutorial.prototype = {
 	preload: function(){
 	},
 	create: function(){
+	//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
 		//add cafe background
 		this.cafe = game.add.sprite(0, 0, 'background');
