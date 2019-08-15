@@ -11,10 +11,22 @@ Haley, Tovi, Isaiah */
 var game = new Phaser.Game(1600,900, Phaser.AUTO);
 
 //Menu state
-var MainMenu = function(game){};
-MainMenu.prototype = { //filled in for sake of prototype
-	init: function(){
-		this.startText
+var MainMenu = function(game){
+	this.startText;
+};
+MainMenu.prototype = {
+	preload: function(){
+		//load images 
+		game.load.image('background', 'assets/images/background.png');
+		game.load.image('cheesecake', 'assets/images/dessert1.png')
+		game.load.image('mug', 'assets/images/mug.png');
+		game.load.image('counter', 'assets/images/counter.png');
+		game.load.image('serveButton', 'assets/images/serveButton.png');
+		game.load.image('coffeeMachine', 'assets/images/coffeeMachine.png');
+		game.load.image('manager', 'assets/images/manager.png');
+		game.load.image('textBox', 'assets/images/textBox.png');
+
+		//load audio
 	},
 	
 	create: function(){
@@ -57,19 +69,10 @@ PayTime.prototype = {};
 //Tutorial state
 var Tutorial = function(game){
 	this.cafe, this.counter, this.mug, this.serveB, this.text;
-	this.script;
+	this.script, this.cake, this.x;
 };
 Tutorial.prototype = {
 	preload: function(){
-		//load images 
-		game.load.image('background', 'assets/images/background.png');
-		game.load.image('mug', 'assets/images/mug.png');
-		game.load.image('counter', 'assets/images/counter.png');
-		game.load.image('serveButton', 'assets/images/serveButton.png');
-		game.load.image('coffeeMachine', 'assets/images/coffeeMachine.png');
-		game.load.image('manager', 'assets/images/manager.png');
-		game.load.image('textBox', 'assets/images/textBox.png');
-
 	},
 	create: function(){
 
@@ -91,9 +94,10 @@ Tutorial.prototype = {
 		this.textBox = game.add.sprite(50, 650, 'textBox');
 
 		//adds coffee machine
-		this.machine = game.add.sprite(game.world.width-250, 700, 'coffeeMachine');
-		//this.machine.scale.setTo(0.8, 0.8); <--- took this out for now bc the mug fits better without it, but we can also scale the mug too - haley
+		this.machine = game.add.sprite(1350, 700, 'coffeeMachine');
 		this.machine.anchor = new Phaser.Point(0.5, 1);
+
+		this.cake = game.add.sprite(500, 400, 'cheesecake');
 
 		//add mug
 		this.mug = game.add.sprite(1350, 750, 'mug');
@@ -103,7 +107,9 @@ Tutorial.prototype = {
 		this.mug.inputEnabled = true;
 		this.mug.input.enableDrag(true);
 		
-		this.script = scriptLine(1);
+		//grabs first line of script
+		this.x = 1;
+		this.script = scriptLine(this.x);
 
 		// TEXTTTTT
 		this.text = this.add.text(this.textBox.x + 15, this.textBox.y + 15, this.script, 
@@ -111,7 +117,8 @@ Tutorial.prototype = {
 	},
 	update: function(){
 		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
-			this.script = scriptLine(2);
+			this.x += 1;
+			this.script = scriptLine(this.x);
 			this.text.text = this.script;
 		}
 	}
