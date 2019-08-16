@@ -18,11 +18,17 @@ MainMenu.prototype = {
 	preload: function(){
 		//load images 
 		game.load.image('background', 'assets/images/background.png');
-		game.load.image('cheesecake', 'assets/images/dessert1.png')
+		game.load.image('cheesecake', 'assets/images/dessert1.png');
+		game.load.image('croissant', 'assets/images/dessert2.png');
+		game.load.image('cookie', 'assets/images/dessert3.png');
+		game.load.image('brownie', 'assets/images/dessert4.png');
+		game.load.image('pudding', 'assets/images/dessert5.png');
+		game.load.image('pastry', 'assets/images/dessert6.png');
 		game.load.image('mug', 'assets/images/mug.png');
 		game.load.image('counter', 'assets/images/counter.png');
 		game.load.image('serveButton', 'assets/images/serveButton.png');
 		game.load.image('coffeeMachine', 'assets/images/coffeeMachine.png');
+		game.load.image('case', 'assets/images/displayCase.png');
 		game.load.image('manager', 'assets/images/manager.png');
 		game.load.image('textBox', 'assets/images/textBox.png');
 
@@ -72,13 +78,19 @@ PayTime.prototype = {};
 //Tutorial state
 var Tutorial = function(game){
 	this.cafe, this.counter, this.mug, this.serveB, this.text;
-	this.script, this.cake, this.gameMusic, this.x;
+	this.script, this.cursors, this.display; 
+	this.cake, this.croiss, this.cookie, this.brownie, this.pudding, this.pastry;
+	this.gameMusic, this.x;
 };
 Tutorial.prototype = {
 	preload: function(){
 	},
 	create: function(){
-	//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+		//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+		//makes our bigger world
+		game.world.setBounds(0, 0, 3195, 900);
+		this.cursors = game.input.keyboard.createCursorKeys();
 
 		//plays music
 		this.gameMusic = new Phaser.Sound(game, 'cafeMusic', 1, true);
@@ -88,11 +100,12 @@ Tutorial.prototype = {
 		this.cafe = game.add.sprite(0, 0, 'background');
 
 		//adds manager
-		this.manager = game.add.sprite(game.world.centerX, game.world.centerY +100, 'manager');
+		this.manager = game.add.sprite(800, 550, 'manager');
 		this.manager.anchor = new Phaser.Point(0.5, 0.5);
 
-		//add counter
+		//add counter & displaycase
 		this.counter = game.add.sprite(0, 600, 'counter');
+		this.display = game.add.sprite(1600, 400, 'case');
 
 		//add serveButton
 		this.serveB = game.add.button(250, 600, 'serveButton');
@@ -105,7 +118,14 @@ Tutorial.prototype = {
 		this.machine = game.add.sprite(1350, 700, 'coffeeMachine');
 		this.machine.anchor = new Phaser.Point(0.5, 1);
 
-		this.cake = game.add.sprite(500, 400, 'cheesecake');
+		//adds desserts
+		this.cake = game.add.sprite(1750, 450, 'cheesecake');
+		this.croiss = game.add.sprite(2275, 450, 'croissant');
+		this.cookie = game.add.sprite(2875, 425, 'cookie');
+		this.brownie = game.add.sprite(1750, 675, 'brownie');
+		this.pudding = game.add.sprite(2275, 650, 'pudding');
+		this.pastry = game.add.sprite(2875, 650, 'pastry');
+		
 
 		//add mug
 		this.mug = game.add.sprite(1350, 750, 'mug');
@@ -129,6 +149,14 @@ Tutorial.prototype = {
 			this.script = scriptLine(this.x);
 			this.text.text = this.script;
 		}
+
+		//movement control of screen
+		if (this.cursors.left.isDown){
+        	game.camera.x -= 10;
+    	}
+   		if (this.cursors.right.isDown){
+        	game.camera.x += 10;
+    	}
 	}
 };
 
