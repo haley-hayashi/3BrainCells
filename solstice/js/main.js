@@ -108,11 +108,11 @@ Tutorial.prototype = {
 		this.display = game.add.sprite(1600, 400, 'case');
 
 		//add serveButton
-		this.serveB = game.add.button(250, 600, 'serveButton');
+		this.serveB = game.add.button(250, 800, 'serveButton');
 		this.serveB.anchor = new Phaser.Point(0.5, 1);
 
 		//adds textbox
-		this.textBox = game.add.sprite(50, 650, 'textBox');
+		this.textBox = game.add.sprite(50, 150, 'textBox');
 
 		//adds coffee machine
 		this.machine = game.add.sprite(1350, 700, 'coffeeMachine');
