@@ -27,6 +27,8 @@ MainMenu.prototype = {
 		game.load.image('textBox', 'assets/images/textBox.png');
 
 		//load audio
+		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
+
 	},
 	
 	create: function(){
@@ -70,13 +72,17 @@ PayTime.prototype = {};
 //Tutorial state
 var Tutorial = function(game){
 	this.cafe, this.counter, this.mug, this.serveB, this.text;
-	this.script, this.cake, this.x;
+	this.script, this.cake, this.gameMusic, this.x;
 };
 Tutorial.prototype = {
 	preload: function(){
 	},
 	create: function(){
 	//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+		//plays music
+		this.gameMusic = new Phaser.Sound(game, 'cafeMusic', 1, true);
+		this.gameMusic.play();
 
 		//add cafe background
 		this.cafe = game.add.sprite(0, 0, 'background');
