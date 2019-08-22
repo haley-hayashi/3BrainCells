@@ -35,6 +35,8 @@ MainMenu.prototype = {
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
 
+		//load script
+		game.load.json('script', 'assets/script/textDialogue.json');
 	},
 	
 	create: function(){
@@ -135,20 +137,36 @@ Tutorial.prototype = {
 		this.mug.inputEnabled = true;
 		this.mug.input.enableDrag(true);
 		
-		//grabs first line of script
-		this.x = 1;
-		this.script = scriptLine(this.x);
+		//script 
+		this.tutorialMode = game.cache.getJSON('script');
+		this.inkTutorial = new inkjs.Story(this.tutorialMode);
+		this.autoContinueStory = true;
 
-		// TEXTTTTT
-		this.text = this.add.text(this.textBox.x + 15, this.textBox.y + 15, this.script, 
-			{fontSize: '32px', fill: '#ffffff',  align: 'left', wordWrap: true, wordWrapWidth: this.textBox.width});
+		//text style for dialogue
+		this.textStyleMain = {
+			fill: '#000000',
+			align: 'left',
+			wordWrap: true,
+			wordWrapWidth: this.textBox.width
+		}
+
+		//text style for choices
+		this.textStyleChoices = {
+			fill: '#2153de',
+			align: 'left',
+			wordWrap: true,
+			wordWrapWidth: this.textBox.width,
+			fontWeight: 'bold'
+		}
+		//text thing
+		this.displayText = this.add.text(this.textBox.x + 15, this.textBox.y + 15, "Press Space to Begin.", this.textStyleMain);
+		this.choices = [];
 	},
 	update: function(){
-		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
-			this.x += 1;
-			this.script = scriptLine(this.x);
-			this.text.text = this.script;
-		}
+		//moves dialogue along
+		if(this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+		this.continueStory();
+	}
 
 		//movement control of screen
 		if (this.cursors.left.isDown){
@@ -157,7 +175,61 @@ Tutorial.prototype = {
    		if (this.cursors.right.isDown){
         	game.camera.x += 10;
     	}
+	},
+
+	continueStory: function(){
+		if(!this.autoContinueStory){
+			return;
+		}
+		var paragraphIndex = 0;
+		var delay = 0.0;
+		var completeText = "";
+
+		while(this.inkTutorial.canContinue){
+			var paragraphText = this.inkTutorial.Continue();
+			completeText = completeText + '\n' + paragraphText;
+		}
+
+		this.display_Text(completeText);
+		this.autoContinueStory = false;
+
+		for(var i = 0; i < this.choices.length; i++){
+			this.choices[i].destroy();
+		}
+		this.choices = [];
+
+		this.inkTutorial.currentChoices.forEach((choice) =>{
+			this.display_Choice(choice.text, choice.index);
+		});
+		this.currentParagraph = 0;
+	},
+
+	display_Text: function(text){
+		this.displayText.destroy();
+		this.displayText = game.add.text(this.textBox.x + 15, this.textBox.y, text, this.textStyleMain);
+		this.displayText.setText(text);
+	},
+
+	display_Choice: function(text, target){
+		var lastChoice = this.displayText.x - 40;
+		if(this.choices.length > 0){
+			lastChoice = this.choices[this.choices.length - 1].x + this.choices[this.choices.length - 1].width;
+		}
+		var newChoice = game.add.text(this.textBox.x + lastChoice, this.textBox.y + 150, text, this.textStyleChoices);
+		newChoice.setStyle(newChoice.style, true);
+
+		newChoice.choiceDestination = target;
+
+		newChoice.inputEnabled = true;
+		newChoice.events.onInputDown.add((obj, pointer) =>{
+			this.inkTutorial.ChooseChoiceIndex(obj.choiceDestination);
+			//this is where im putting choice reading
+			this.autoContinueStory = true;
+		});
+
+		this.choices.push(newChoice);
 	}
+
 };
 
 //---------------------------------------------------------------------------------------------------------------
