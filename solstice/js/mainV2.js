@@ -35,6 +35,8 @@ MainMenu.prototype = {
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
 
+		//load script
+		game.load.json('script', 'assets/script/textDialogue.json');
 	},
 	
 	create: function(){
@@ -135,20 +137,31 @@ Tutorial.prototype = {
 		this.mug.inputEnabled = true;
 		this.mug.input.enableDrag(true);
 		
-		//grabs first line of script
-		this.x = 1;
-		this.script = scriptLine(this.x);
+		//script 
+		this.tutorialMode = game.cache.getJSON('script');
+		this.inkTutorial = new inkjs.Story(this.tutorialMode);
 
-		// TEXTTTTT
-		this.text = this.add.text(this.textBox.x + 15, this.textBox.y + 15, this.script, 
-			{fontSize: '32px', fill: '#ffffff',  align: 'left', wordWrap: true, wordWrapWidth: this.textBox.width});
+		this.textStyleMain = {
+			fill: '#000000';
+			align: 'left';
+			wordWrap: true;
+			wordWrapWidth: this.textBox.width;
+		}
+		this.textStyleChoices = {
+			fill: '#000000';
+			align: 'left';
+			wordWrap: true;
+			wordWrapWidth: this.textBox.width;
+			fontWeight: 'bold';
+		}
+		//text thing
+		this.displayText = this.add.text(this.textBox.x + 15, this.textBox.y + 15, "", this.textStyleMain);
+		this.choices = [];
 	},
 	update: function(){
-		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
-			this.x += 1;
-			this.script = scriptLine(this.x);
-			this.text.text = this.script;
-		}
+		//moves dialogue along
+		if()
+		this.continueStory();
 
 		//movement control of screen
 		if (this.cursors.left.isDown){
@@ -157,7 +170,18 @@ Tutorial.prototype = {
    		if (this.cursors.right.isDown){
         	game.camera.x += 10;
     	}
+	},
+
+	display_Text: function(text){
+		this.displayText.destroy();
+		this.displayText = game.add.text(this.textBox.x + 15, this.textBox.y + 15, "", this.textStyleMain);
+		
+		text = this.parseText(text, this.displayText);
+		this.displayText.setText(text);
 	}
+
+};
+
 };
 
 //---------------------------------------------------------------------------------------------------------------
