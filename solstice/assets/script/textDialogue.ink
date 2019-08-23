@@ -1,4 +1,4 @@
-Solstice
+//Solstice
 ->Tutorial
 
 ===Tutorial===
@@ -39,6 +39,9 @@ MANAGER: Alright. First, grab a mug.
 
 ==TutorialP3==
 MANAGER: Congrats! You can hold a mug. Now, go ahead and put in some Glop and some Chocolate.
+
+//filling glop chocolate event
+
 ->END
 
 ==TutorialP4==
@@ -71,7 +74,6 @@ MANAGER: Alright, now you’re all ready to not make a total fool outta yourself
     ->END
 
 ==TutorialBeta==
-
 MANAGER:  You know you can go right. The tutorial is over. OVER. O-V-E-R. Finished. Done. Terminado. C’est fini. Go home. Get a life.
 MANAGER:  …
 MANAGER: What are you waiting for!? You playtested the game. 
