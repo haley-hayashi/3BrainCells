@@ -25,16 +25,32 @@ MainMenu.prototype = {
 		game.load.image('pudding', 'assets/images/dessert5.png');
 		game.load.image('pastry', 'assets/images/dessert6.png');
 		game.load.image('mug', 'assets/images/mug.png');
+		game.load.image('mugWCream', 'assets/images/mugCream.png');
+		game.load.image('mugFill','assets/images/mugFilled.png');
 		game.load.image('counter', 'assets/images/counter.png');
 		game.load.image('serveButton', 'assets/images/serveButton.png');
 		game.load.image('coffeeMachine', 'assets/images/coffeeMachine.png');
 		game.load.image('case', 'assets/images/displayCase.png');
 		game.load.image('manager', 'assets/images/manager.png');
 		game.load.image('textBox', 'assets/images/textBox.png');
+		game.load.image('goWork', 'assets/images/leaveButton.png');
+		game.load.image('bank', 'assets/images/bankButton.png');
+		game.load.image('chocoSyrup', 'assets/images/chocoSyrup.png');
+		game.load.image('glop', 'assets/images/glop.png');
+		game.load.image('henry','assets/images/henry.png');
+		game.load.image('teresa', 'assets/images/teresa.png');
+		game.load.image('whip', 'assets/images/whippedScream.png');
+		game.load.image('apartment', 'assets/images/apartment.png');
 		game.load.image('title', 'assets/images/solsticeLogo.png');
 
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
+		game.load.audio('apMusic','assets/music/apartmentTheme.mp3');
+		game.load.audio('doorBell', 'assets/music/DoorBellRings.mp3');
+		game.load.audio('doorOpen', 'assets/audio/DoorOpen.mp3');
+		game.load.audio('chaChing', 'assets/audio/Money.mp3');
+		game.load.audio('clink', 'assets/audio/MugClink.mp3');
+		game.load.audio('sliding', 'assets/audio/MugSliding.mp3');
 
 		//load script
 		game.load.json('script', 'assets/script/textDialogue.json');
@@ -47,7 +63,7 @@ MainMenu.prototype = {
 	
 	update: function(){
 		if(this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
-			game.state.start('Tutorial');
+			game.state.start('Home');
 		}
 	}
 }
@@ -62,7 +78,28 @@ Prologue.prototype = {}
 
 //Home state
 var Home = function(game){};
-Home.prototype = {};
+Home.prototype = {
+	create: function(){
+
+		//load background
+		this.apartment = game.add.sprite(0, 0, 'apartment');
+
+		//music play
+		this.homeMusic = new Phaer.Sound(game, 'apMusic', 1, true);
+		this.homeMusic.play();
+
+		//gotoWork button
+		this.workButton = game.add.button(370, 370, 'goWork', this.goTo.Work, this);
+
+		//check money button
+		this.bankButton = game.add.button(1000,400, 'bank');
+	},
+
+	goToWork: function(){
+		this.homeMusic.stop();
+		game.state.start('Tutorial');
+	}
+};
 
 //---------------------------------------------------------------------------------------------------------------
 
