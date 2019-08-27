@@ -29,19 +29,21 @@ MainMenu.prototype = {
 		game.load.image('mugFill','assets/images/mugFilled.png');
 		game.load.image('counter', 'assets/images/counter.png');
 		game.load.image('serveButton', 'assets/images/serveButton.png');
+		game.load.image('homeButton', 'assets/images/homeButton.png');
 		game.load.image('coffeeMachine', 'assets/images/coffeeMachine.png');
 		game.load.image('case', 'assets/images/displayCase.png');
 		game.load.image('manager', 'assets/images/manager.png');
 		game.load.image('textBox', 'assets/images/textBox.png');
 		game.load.image('goWork', 'assets/images/leaveButton.png');
 		game.load.image('bank', 'assets/images/bankButton.png');
-		//game.load.image('chocoSyrup', 'assets/images/chocoSyrup.png');
+		game.load.image('chocoSyrup', 'assets/images/chocoSyrup.png');
 		game.load.image('glop', 'assets/images/glop.png');
 		game.load.image('henry','assets/images/henry.png');
 		game.load.image('teresa', 'assets/images/teresa.png');
 		game.load.image('whip', 'assets/images/whippedScream.png');
 		game.load.image('apartment', 'assets/images/apartment.png');
 		game.load.image('title', 'assets/images/solsticeLogo.png');
+		game.load.image('paycheck', 'assets/images/paycheck.png');
 
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
@@ -57,7 +59,8 @@ MainMenu.prototype = {
 	},
 	
 	create: function(){
-		this.scoreText = this.add.text(16, 16, 'Press [SPACE] to start and to go through the dialogue.', {fontSize: '32px', fill: '#f5f5f5'});
+		this.game.stage.backgroundColor = "#b8eff6";
+		this.scoreText = this.add.text(16, 16, 'Press [SPACE] to start and to go through the dialogue.', {fontSize: '32px', fill: '#000000'});
 		this.titleThing = this.add.sprite(250, 50, 'title');
 	},
 	
@@ -111,7 +114,16 @@ Night.prototype = {};
 
 //Paytime state
 var PayTime = function(game){};
-PayTime.prototype = {};
+PayTime.prototype = {
+	create: function(){
+
+		//paycheck screen
+		this.pay = game.add.sprite(0, 0, 'paycheck');
+
+		//button home
+		this.backhome = game.add.sprite(0, 0, 'homeButton');
+	}
+};
 
 //---------------------------------------------------------------------------------------------------------------
 
@@ -224,13 +236,16 @@ Tutorial.prototype = {
 		var completeText = "";
 
 		//where I need to break paragrpahs
-		while(this.inkTutorial.canContinue){
-			var paragraphText = this.inkTutorial.Continue();
-			completeText = completeText + '\n' + paragraphText;
+		if(this.inkTutorial.canContinue){
+			completeText = this.inkTutorial.Continue();
+			//completeText = completeText + '\n' + paragraphText;
 		}
 
 		this.display_Text(completeText);
+
+		if(!this.inkTutorial.canContinue){
 		this.autoContinueStory = false;
+	}
 
 		for(var i = 0; i < this.choices.length; i++){
 			this.choices[i].destroy();

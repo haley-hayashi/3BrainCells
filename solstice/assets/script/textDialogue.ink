@@ -4,11 +4,11 @@
 ===Tutorial===
 MANAGER: Great. You’re finally here. You do know what time it is, right?
 
-* Um. No, not really...		
+* [Um. No, not really...]		
     MANAGER: Late that’s what you are. I don’t pay you to be late.	
 ->TutorialP1
 
-*   Coffee time! 
+*   [Coffee time!] 
     MANAGER: *sigh* What am I going to do with you…? You’re late, but I guess it’s okay this time.
 ->TutorialP1
 
@@ -19,11 +19,11 @@ MANAGER: Anyways, you’re here and you need training. That’s what I’m here 
 
 MANAGER: Are you going to ask me for my order or are you just going to stand there?
 
-* Fine! What do you want?
+*   [Fine! What do you want?]
     MANAGER: You’re really going to use that attitude? God, I hope this wasn’t a mistake. Get me a  Glop Chocolate.
 ->TutorialP2
 
-* Hi, welcome to Solstice! What can I get for you?
+*   [Hi, welcome to Solstice! What can I get for you?]
     MANAGER: Wow, for a late person you have a warm attitude. That’s good. I’ll have a Glop Chocolate.
 ->TutorialP2
 
@@ -65,11 +65,11 @@ MANAGER: ...Is what I’d say if I actually cared about what we serve here.
 
 MANAGER: Alright, now you’re all ready to not make a total fool outta yourself. Don’t mess up or I’m docking it from your pay 'cause I’m the manager and I can do that. Now get working.
 
-*   PLAYER: Thanks for the training!
+*   [PLAYER: Thanks for the training!]
     MANAGER: Yeah, whatever. Don’t mention it.
     ->END
     
-*   PLAYER: Would it hurt to be less grouchy?
+*   [PLAYER: Would it hurt to be less grouchy?]
     MANAGER: Umm... would it hurt you to talk less? Just do your job new-brew.
     ->END
 
@@ -85,21 +85,21 @@ MANAGER: Ok I’m gonna break this game! See ya!
 ==TeresaE1A==
 TERESA: Hi! I'll have... wait, are you new?
 
-*   PLAYER: I am! Welcome to Solstice!
+*   [PLAYER: I am! Welcome to Solstice!]
     TERESA: Haha, You have so much energy! It's cute! Can I get a ____?
     ->END
 
-*   PLAYER: Thanks for noticing, now what do you want?
+*   [PLAYER: Thanks for noticing, now what do you want?]
     TERESA: No need to be rude. I'll have a ______.
     ->END
     
 ==TeresaE1B==
 TERESA: Thanks! So, did you just move in?
 
-*   PLAYER: Yeah, temporarily... I'm just hoping to save enough money to get home by the end of the week.
+*   [PLAYER: Yeah, temporarily... I'm just hoping to save enough money to get home by the end of the week.]
     TERESA: Oh, wow... sounds rough. Well, my name's Teresa. If you ever need a hand or even if you just wanna hang out, come find me!
     ->END
 
-*   PLAYER: Sorry, but it's none of your business.
+*   [PLAYER: Sorry, but it's none of your business.]
     TERESA: Really, you don't have to be so rude. If you change your mind about that attitude and want to try being frineds just ask around for Teresa. I'm sure you'll be able to find me.
     ->END
