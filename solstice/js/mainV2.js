@@ -31,6 +31,7 @@ MainMenu.prototype = {
 		game.load.image('case', 'assets/images/displayCase.png');
 		game.load.image('manager', 'assets/images/manager.png');
 		game.load.image('textBox', 'assets/images/textBox.png');
+		game.load.image('title', 'assets/images/solsticeLogo.png');
 
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
@@ -41,7 +42,7 @@ MainMenu.prototype = {
 	
 	create: function(){
 		this.scoreText = this.add.text(16, 16, 'Press [SPACE] to start and to go through the dialogue.', {fontSize: '32px', fill: '#f5f5f5'});
-		this.titleText = this.add.text(750, 400, 'Solstice', {fontSize: '40px', fill: '#f5f5f5'})
+		this.titleThing = this.add.sprite(250, 50, 'title');
 	},
 	
 	update: function(){
