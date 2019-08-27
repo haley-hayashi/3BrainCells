@@ -35,7 +35,7 @@ MainMenu.prototype = {
 		game.load.image('textBox', 'assets/images/textBox.png');
 		game.load.image('goWork', 'assets/images/leaveButton.png');
 		game.load.image('bank', 'assets/images/bankButton.png');
-		game.load.image('chocoSyrup', 'assets/images/chocoSyrup.png');
+		//game.load.image('chocoSyrup', 'assets/images/chocoSyrup.png');
 		game.load.image('glop', 'assets/images/glop.png');
 		game.load.image('henry','assets/images/henry.png');
 		game.load.image('teresa', 'assets/images/teresa.png');
@@ -46,7 +46,7 @@ MainMenu.prototype = {
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
 		game.load.audio('apMusic','assets/music/apartmentTheme.mp3');
-		game.load.audio('doorBell', 'assets/music/DoorBellRings.mp3');
+		game.load.audio('doorBell', 'assets/audio/DoorBellRings.mp3');
 		game.load.audio('doorOpen', 'assets/audio/DoorOpen.mp3');
 		game.load.audio('chaChing', 'assets/audio/Money.mp3');
 		game.load.audio('clink', 'assets/audio/MugClink.mp3');
@@ -85,11 +85,11 @@ Home.prototype = {
 		this.apartment = game.add.sprite(0, 0, 'apartment');
 
 		//music play
-		this.homeMusic = new Phaer.Sound(game, 'apMusic', 1, true);
+		this.homeMusic = new Phaser.Sound(game, 'apMusic', 1, true);
 		this.homeMusic.play();
 
 		//gotoWork button
-		this.workButton = game.add.button(370, 370, 'goWork', this.goTo.Work, this);
+		this.workButton = game.add.button(370, 370, 'goWork', this.goToWork, this);
 
 		//check money button
 		this.bankButton = game.add.button(1000,400, 'bank');
