@@ -31,7 +31,7 @@ MANAGER: Are you going to ask me for my order or are you just going to stand the
 
 PLAYER: So… how do I?
 
-MANAGER: Alright. First, grab a mug.
+MANAGER: Alright. First, grab a mug. END OF CURRENT VERSION THANKS FOR PLAYING
 
 //mug grab event
 

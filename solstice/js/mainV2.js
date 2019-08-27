@@ -244,8 +244,8 @@ Tutorial.prototype = {
 		this.display_Text(completeText);
 
 		if(!this.inkTutorial.canContinue){
-		this.autoContinueStory = false;
-	}
+			this.autoContinueStory = false;
+		}
 
 		for(var i = 0; i < this.choices.length; i++){
 			this.choices[i].destroy();
@@ -266,6 +266,7 @@ Tutorial.prototype = {
 
 	display_Choice: function(text, target){
 		var lastChoice = this.displayText.x - 40;
+		var choiceText = "";
 		if(this.choices.length > 0){
 			lastChoice = this.choices[this.choices.length - 1].x + this.choices[this.choices.length - 1].width;
 		}
@@ -279,7 +280,10 @@ Tutorial.prototype = {
 			this.inkTutorial.ChooseChoiceIndex(obj.choiceDestination);
 			//this is where im putting choice reading
 			this.autoContinueStory = true;
+			choiceText = this.inkTutorial.Continue();
+			this.display_Text(choiceText);
 			this.continueStory();
+
 		});
 
 		this.choices.push(newChoice);
