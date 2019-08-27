@@ -92,7 +92,7 @@ Home.prototype = {
 		this.workButton = game.add.button(370, 370, 'goWork', this.goToWork, this);
 
 		//check money button
-		this.bankButton = game.add.button(1000,400, 'bank');
+		//this.bankButton = game.add.button(1000,400, 'bank');
 	},
 
 	goToWork: function(){
