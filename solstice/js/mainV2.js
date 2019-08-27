@@ -223,6 +223,7 @@ Tutorial.prototype = {
 		var delay = 0.0;
 		var completeText = "";
 
+		//where I need to break paragrpahs
 		while(this.inkTutorial.canContinue){
 			var paragraphText = this.inkTutorial.Continue();
 			completeText = completeText + '\n' + paragraphText;
@@ -263,6 +264,7 @@ Tutorial.prototype = {
 			this.inkTutorial.ChooseChoiceIndex(obj.choiceDestination);
 			//this is where im putting choice reading
 			this.autoContinueStory = true;
+			this.continueStory();
 		});
 
 		this.choices.push(newChoice);
