@@ -81,3 +81,25 @@ MANAGER: The game is not done! It means come back later when the useless devs ac
 MANAGER: … 
 MANAGER: Ok I’m gonna break this game! See ya! 
 -->END
+
+==TeresaE1A==
+TERESA: Hi! I'll have... wait, are you new?
+
+*   PLAYER: I am! Welcome to Solstice!
+    TERESA: Haha, You have so much energy! It's cute! Can I get a ____?
+    ->END
+
+*   PLAYER: Thanks for noticing, now what do you want?
+    TERESA: No need to be rude. I'll have a ______.
+    ->END
+    
+==TeresaE1B==
+TERESA: Thanks! So, did you just move in?
+
+*   PLAYER: Yeah, temporarily... I'm just hoping to save enough money to get home by the end of the week.
+    TERESA: Oh, wow... sounds rough. Well, my name's Teresa. If you ever need a hand or even if you just wanna hang out, come find me!
+    ->END
+
+*   PLAYER: Sorry, but it's none of your business.
+    TERESA: Really, you don't have to be so rude. If you change your mind about that attitude and want to try being frineds just ask around for Teresa. I'm sure you'll be able to find me.
+    ->END
