@@ -44,6 +44,7 @@ MainMenu.prototype = {
 		game.load.image('apartment', 'assets/images/apartment.png');
 		game.load.image('title', 'assets/images/solsticeLogo.png');
 		game.load.image('paycheck', 'assets/images/paycheck.png');
+		game.load.image('goMachine', 'assets/images/coffeGoButton.png');
 
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
@@ -140,6 +141,8 @@ Tutorial.prototype = {
 	create: function(){
 		//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
+		this.fill = 0;
+
 		//makes our bigger world
 		game.world.setBounds(0, 0, 3195, 900);
 		this.cursors = game.input.keyboard.createCursorKeys();
@@ -169,6 +172,7 @@ Tutorial.prototype = {
 		//adds coffee machine
 		this.machine = game.add.sprite(1350, 700, 'coffeeMachine');
 		this.machine.anchor = new Phaser.Point(0.5, 1);
+		this.machineButton = game.add.button(1425, 150, 'goMachine', this.brewCoffee, this);
 
 		//adds desserts
 		this.cake = game.add.sprite(1750, 450, 'cheesecake');
@@ -180,12 +184,12 @@ Tutorial.prototype = {
 		
 
 		//add mug
-		this.mug = game.add.sprite(1350, 750, 'mug');
-		this.mug.anchor = new Phaser.Point(0.5, 0.5);
+		var mug = game.add.sprite(1350, 750, 'mug');
+		mug.anchor = new Phaser.Point(0.5, 0.5);
 
 		//allows mug to be dragged
-		this.mug.inputEnabled = true;
-		this.mug.input.enableDrag(true);
+		mug.inputEnabled = true;
+		mug.input.enableDrag(true);
 		
 		//script 
 		this.tutorialMode = game.cache.getJSON('script');
@@ -209,14 +213,14 @@ Tutorial.prototype = {
 			fontWeight: 'bold'
 		}
 		//text thing
-		this.displayText = this.add.text(this.textBox.x + 15, this.textBox.y + 15, "Press Space to Begin.", this.textStyleMain);
+		this.displayText = this.add.text(this.textBox.x + 20, this.textBox.y + 25, "(MANAGER waits expectingly)", this.textStyleMain);
 		this.choices = [];
 	},
 	update: function(){
 		//moves dialogue along
-		if(this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
-		this.continueStory();
-	}
+		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
+			this.continueStory();
+		}
 
 		//movement control of screen
 		if (this.cursors.left.isDown){
@@ -231,6 +235,9 @@ Tutorial.prototype = {
 		if(!this.autoContinueStory){
 			return;
 		}
+		if(!this.inkTutorial.canContinue){
+			this.autoContinueStory = false;
+		}
 		var paragraphIndex = 0;
 		var delay = 0.0;
 		var completeText = "";
@@ -240,12 +247,8 @@ Tutorial.prototype = {
 			completeText = this.inkTutorial.Continue();
 			//completeText = completeText + '\n' + paragraphText;
 		}
-
 		this.display_Text(completeText);
-
-		if(!this.inkTutorial.canContinue){
-			this.autoContinueStory = false;
-		}
+		console.log(completeText);
 
 		for(var i = 0; i < this.choices.length; i++){
 			this.choices[i].destroy();
@@ -255,12 +258,14 @@ Tutorial.prototype = {
 		this.inkTutorial.currentChoices.forEach((choice) =>{
 			this.display_Choice(choice.text, choice.index);
 		});
+
+
 		this.currentParagraph = 0;
 	},
 
 	display_Text: function(text){
 		this.displayText.destroy();
-		this.displayText = game.add.text(this.textBox.x + 15, this.textBox.y, text, this.textStyleMain);
+		this.displayText = game.add.text(this.textBox.x + 20, this.textBox.y + 25, text, this.textStyleMain);
 		this.displayText.setText(text);
 	},
 
@@ -280,13 +285,26 @@ Tutorial.prototype = {
 			this.inkTutorial.ChooseChoiceIndex(obj.choiceDestination);
 			//this is where im putting choice reading
 			this.autoContinueStory = true;
-			choiceText = this.inkTutorial.Continue();
-			this.display_Text(choiceText);
+			//choiceText = this.inkTutorial.Continue();
+			//console.log(choiceText);
+			//this.display_Text(choiceText);
 			this.continueStory();
 
 		});
 
 		this.choices.push(newChoice);
+	},
+
+	brewCoffee: function(){
+		if(fill = 0){
+			mug.kill();
+			//this.mug = game.add.sprite(0, 0, 'mugFill');
+			console.log('should delte')
+			fill = 1;
+		}
+		else{
+			return;
+		}
 	}
 
 };

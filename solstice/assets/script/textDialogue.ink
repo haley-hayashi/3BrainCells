@@ -4,7 +4,7 @@
 ===Tutorial===
 MANAGER: Great. You’re finally here. You do know what time it is, right?
 
-* [Um. No, not really...]		
+*   [Um. No, not really...]		
     MANAGER: Late that’s what you are. I don’t pay you to be late.	
 ->TutorialP1
 
