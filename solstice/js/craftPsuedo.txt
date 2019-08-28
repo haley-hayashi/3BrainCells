@@ -1,0 +1,47 @@
+// pseudocode for the crafting mechanics
+
+
+VARIABLES NEEDED
+1) bool for each ingredient
+2) var (int) for counting how many ingredients have been used
+3) var (int) for counting how many drinks have been served
+
+maybe a var (int) for how many ingredients are on the screen, preventing too many from being spawned at once?
+	- needs implementation of a trash mechanic
+
+//-------ingredient management (spawning, tracking, despawning)
+
+//make and place buttons for ingredients on the table (resized, non-moveable versions of the ingredients, maybe with some sort of border to show that it's a button rather than an interactable)
+
+//if a button is pressed, spawn in 1 matching ingredient asset
+	//implement click/drag functionality for ingredients
+	
+//if an ingredient collides with the mug
+	//have some sort of interface to show that it's inside (bottom a + b = c, or have it appear as an icon that moves with the mug)
+	//kill ingredient asset
+	//ingredient counter up so that number of ingredients used in drink cannnot exceed 2
+		//if ingredient counter is 2 or more, ingredients cannot be killed by the mug anymore
+	//boolean to tell us which ingredients were used 
+
+
+//implement trash button that clears the mug?
+	//if the trash button is interacted with (mug to trash)
+		//counter drops to 0 and crafting interface is reset
+	//if the trash button is interacted with (loose ingredient to trash)
+		//kill ingredient asset
+		
+//------------coffee machine interaction
+
+//if the go button is pressed, change the appearance of the mug to "filled", but only if it was "empty" before
+	//if it wasn't in the empty state, then break
+	
+//maybe try to see if the go button can work only for when the cup is "within range'?
+
+//---------serving
+
+//if the total drink counter for the day exceeds the number of customers for the day (2 on first day, 4 for other days), 
+
+//if total = 1 && drink is finished, pressing the serve button will serve the drink & reset ingredient counter + booleans; add to a total drink counter
+	//if the correct 2 ingredients are marked as "true", payment will be x
+	//else, payment will be x - y
+//else, pressing serve will do nothing
