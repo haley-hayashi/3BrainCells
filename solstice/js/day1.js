@@ -1,12 +1,28 @@
+//notes from haley :)
+//each drink has an assinged number based on the added value of its ingredients
+//the drink glop chocolate has an asssinged number of 3 because the ingredients	
+
+//ingredient chart
+	//glop = 1
+	//chocolate = 2
+	//whipped screm = 100
+
+//drink chart
+	//glop chocolate = 3
+	//glop chocolate with whipped scream = 103
+	
 "use strict"
-//Tutorial state
+
 var Day1 = function(game){
 	this.cafe, this.counter, this.mug, this.serveB, this.text;
 	this.script, this.cursors, this.display; 
 	this.cake, this.croiss, this.cookie, this.brownie, this.pudding, this.pastry;
 	this.gameMusic, this.x; 
 	
-	this.drinkNumber = 0, this.ingredientCounter = 0, this.drinkCounter = 0;
+	this.drinkNumber = 0; //keep track of which drink we're serving
+	this.ingredientCounter = 0; //keep track of how many ingredients we've used
+	this.drinkCounter = 0; //keep track of how many drinks we've served
+	this.paycheck = 0; //keep track of money earned for the day
 };
 Day1.prototype = {
 	create: function(){
@@ -34,7 +50,7 @@ Day1.prototype = {
 		this.display = game.add.sprite(1600, 400, 'case');
 
 		//add serveButton
-		this.serveB = game.add.button(250, 800, 'serveButton');
+		this.serveB = game.add.button(250, 800, 'serveButton', this.serveCoffee, this);
 		this.serveB.anchor = new Phaser.Point(0.5, 1);
 
 		//adds textbox
@@ -57,7 +73,6 @@ Day1.prototype = {
 		this.pudding = game.add.sprite(2275, 650, 'pudding');
 		this.pastry = game.add.sprite(2875, 650, 'pastry');
 		
-
 		//add mug
 		this.mug = game.add.sprite(1380, 460, 'mug');
 		this.mug.enableBody = true;
@@ -135,7 +150,7 @@ Day1.prototype = {
 			this.physics.arcade.overlap(this.chocoSyrup, this.mug, addChocoSyrup, null, this);
 		}
 		
-		console.log(this.ingredientCounter);
+		console.log(money);
 		
 		//addGlop function
 		function addGlop(glop, mug){	
@@ -143,6 +158,7 @@ Day1.prototype = {
 				glop.x = 400;
 				glop.y = 500;
 				this.ingredientCounter += 1;
+				this.drinkNumber += 1;
 			}
 		}
 		
@@ -152,6 +168,7 @@ Day1.prototype = {
 				chocoSyrup.x = 500;
 				chocoSyrup.y = 500;	
 				this.ingredientCounter += 1;
+				this.drinkNumber += 2;
 			}
 		}
 	},
@@ -162,6 +179,26 @@ Day1.prototype = {
 			this.mug.frame = 2;
 		}
 	},
+	
+	serveCoffee: function(){ //each order is inputted manually
+		if(this.drinkCounter == 0){ //first order
+			if(this.drinkNumber == 3){ //if serving glop chocolate w/o whipped cream
+				money += 15;
+				this.paycheck += 15;
+				this.drinkNumber = 0; //reset drink and ingredients
+				this.ingredientCounter = 0;
+				this.drinkCounter += 1;
+			}
+			else{ //if serving anything else
+				money += 10;
+				this.paycheck += 10;
+				this.drinkNumber = 0;
+				this.ingredientCounter = 0;
+				this.drinkCounter += 1;
+			}
+		}
+	},
+	
 //------------------- ink
 	continueStory: function(){
 		if(!this.autoContinueStory){

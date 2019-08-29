@@ -13,10 +13,7 @@ MainMenu.prototype = {
 		game.load.image('brownie', 'assets/images/dessert4.png');
 		game.load.image('pudding', 'assets/images/dessert5.png');
 		game.load.image('pastry', 'assets/images/dessert6.png');
-		//game.load.image('mug', 'assets/images/mug.png');
 		game.load.spritesheet('mug', 'assets/images/mugs.png', 200, 220, 3);
-		game.load.image('mugWCream', 'assets/images/mugCream.png');
-		game.load.image('mugFill','assets/images/mugFilled.png');
 		game.load.image('counter', 'assets/images/counter.png');
 		game.load.image('serveButton', 'assets/images/serveButton.png');
 		game.load.image('homeButton', 'assets/images/homeButton.png');
