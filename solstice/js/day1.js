@@ -161,7 +161,6 @@ Day1.prototype = {
 			this.physics.arcade.overlap(this.chocoSyrup, this.mug, addChocoSyrup, null, this);
 		}
 		
-		console.log(this.paycheck);
 		this.paycheckText.text = 'Today\'s Earnings = ' + this.paycheck;
 		
 		//addGlop function
@@ -248,10 +247,12 @@ Day1.prototype = {
 		var delay = 0.0;
 		var completeText = "";
 
-		//where I need to break paragrpahs
-		if(this.inkTutorial.canContinue){
+		//where string is made
+		if(this.inkTutorial.canContinue){ 
 			completeText = this.inkTutorial.Continue();
-			//completeText = completeText + '\n' + paragraphText;
+			while(completeText === ""){
+				this.inkTutorial.Continue();
+			}
 		}
 		this.display_Text(completeText);
 		console.log(completeText);

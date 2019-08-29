@@ -31,12 +31,12 @@ MANAGER: Are you going to ask me for my order or are you just going to stand the
 
 PLAYER: So… how do I?
 
-MANAGER: Alright. First, grab the carton of Glop. 
+MANAGER: Alright. First, grab the carton of Glop and pull it to the mug. 
 
 ->TutorialP3
 
 ==TutorialP3==
-MANAGER: Congrats! You can hold a mug. Now, go ahead and put in some Chocolate.
+MANAGER: Congrats! You can pour stuff. Now, go ahead and put in some Chocolate. Then click Go.
 
 ->TutorialP4
 
