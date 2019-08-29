@@ -31,32 +31,26 @@ MANAGER: Are you going to ask me for my order or are you just going to stand the
 
 PLAYER: So… how do I?
 
-MANAGER: Alright. First, grab a mug. END OF CURRENT VERSION THANKS FOR PLAYING
+MANAGER: Alright. First, grab the carton of Glop. 
 
-//mug grab event
-
-->END
+->TutorialP3
 
 ==TutorialP3==
-MANAGER: Congrats! You can hold a mug. Now, go ahead and put in some Glop and some Chocolate.
+MANAGER: Congrats! You can hold a mug. Now, go ahead and put in some Chocolate.
 
-//filling glop chocolate event
-
-->END
+->TutorialP4
 
 ==TutorialP4==
-MANAGER: Now put the mug at the 2nd nozzle for the machine to warm it for you.
+//MANAGER: Now put the mug at the 2nd nozzle for the machine to warm it for you.
 
 //mug fill event
 
-->END
+->TutorialP5
 
 ==TutorialP5==
-MANAGER: Alright. Go ahead and put it on the counter and serve it to me. Click that big serve button that only you can see. Don’t ask me how I know, just do it.
+MANAGER: Alright. Go ahead and serve it to me. Click that bell that only you can see has words. Don’t ask me how I know, just do it.
 
-//serve event
-
-->END
+->TutorialP6
 
 ==TutorialP6==
 MANAGER: Wow! Thanks! You’re so awesome! 
@@ -76,7 +70,7 @@ MANAGER: Alright, now you’re all ready to not make a total fool outta yourself
 ==TutorialBeta==
 MANAGER:  You know you can go right. The tutorial is over. OVER. O-V-E-R. Finished. Done. Terminado. C’est fini. Go home. Get a life.
 MANAGER:  …
-MANAGER: What are you waiting for!? You playtested the game. 
+MANAGER: What are you waiting for!? You played the game. 
 MANAGER: The game is not done! It means come back later when the useless devs actually have more stuff for you to play. 
 MANAGER: … 
 MANAGER: Ok I’m gonna break this game! See ya! 
