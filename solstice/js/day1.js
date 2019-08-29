@@ -1,14 +1,12 @@
 "use strict"
 //Tutorial state
-var Tutorial = function(game){
+var Day1 = function(game){
 	this.cafe, this.counter, this.mug, this.serveB, this.text;
 	this.script, this.cursors, this.display; 
 	this.cake, this.croiss, this.cookie, this.brownie, this.pudding, this.pastry;
 	this.gameMusic, this.x;
 };
-Tutorial.prototype = {
-	preload: function(){
-	},
+Day1.prototype = {
 	create: function(){
 		//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 

@@ -23,6 +23,6 @@ Home.prototype = {
 
 	goToWork: function(){
 		this.homeMusic.stop();
-		game.state.start('Tutorial');
+		game.state.start('Day1');
 	}
 };

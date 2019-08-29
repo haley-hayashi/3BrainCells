@@ -37,12 +37,6 @@ PayTime.prototype = {
 
 //---------------------------------------------------------------------------------------------------------------
 
-//Day1 state
-var Day1 = function(game){};
-Day1.prototype = {};
-
-//---------------------------------------------------------------------------------------------------------------
-
 //Day2 state
 var Day2 = function(game){};
 Day2.prototype = {};
@@ -90,7 +84,6 @@ game.state.add('MainMenu', MainMenu);
 game.state.add('Prologue', Prologue);
 game.state.add('Home', Home);
 game.state.add('PayTime', PayTime);
-game.state.add('Tutorial', Tutorial);
 game.state.add('Day1', Day1);
 game.state.add('Day2', Day2);
 game.state.add('Day3', Day3);
