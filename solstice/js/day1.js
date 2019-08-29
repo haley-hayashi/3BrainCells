@@ -250,8 +250,9 @@ Day1.prototype = {
 		//where string is made
 		if(this.inkTutorial.canContinue){ 
 			completeText = this.inkTutorial.Continue();
-			while(completeText === ""){
+			while(completeText == "\n"){
 				this.inkTutorial.Continue();
+				completeText = this.inkTutorial.Continue();
 			}
 		}
 		this.display_Text(completeText);
@@ -268,6 +269,7 @@ Day1.prototype = {
 
 
 		this.currentParagraph = 0;
+
 	},
 
 	display_Text: function(text){
@@ -292,9 +294,6 @@ Day1.prototype = {
 			this.inkTutorial.ChooseChoiceIndex(obj.choiceDestination);
 			//this is where im putting choice reading
 			this.autoContinueStory = true;
-			//choiceText = this.inkTutorial.Continue();
-			//console.log(choiceText);
-			//this.display_Text(choiceText);
 			this.continueStory();
 
 		});
