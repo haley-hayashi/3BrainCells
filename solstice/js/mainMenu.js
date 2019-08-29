@@ -6,6 +6,7 @@ var MainMenu = function(game){
 MainMenu.prototype = {
 	preload: function(){
 		//load images 
+		game.load.image('titleBack', 'assets/images/solsticeBackground.png')
 		game.load.image('background', 'assets/images/background.png');
 		game.load.image('cheesecake', 'assets/images/dessert1.png');
 		game.load.image('croissant', 'assets/images/dessert2.png');
@@ -35,6 +36,7 @@ MainMenu.prototype = {
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/cafeTutorial.mp3');
 		game.load.audio('apMusic','assets/music/apartmentTheme.mp3');
+		game.load.audio('titleMusic', 'assets/music/LogoScene.mp3');
 		game.load.audio('doorBell', 'assets/audio/DoorBellRings.mp3');
 		game.load.audio('doorOpen', 'assets/audio/DoorOpen.mp3');
 		game.load.audio('chaChing', 'assets/audio/Money.mp3');
@@ -46,13 +48,19 @@ MainMenu.prototype = {
 	},
 	
 	create: function(){
-		this.game.stage.backgroundColor = "#b8eff6";
+		this.titleback = this.add.sprite(0, 0, 'titleBack');
 		this.scoreText = this.add.text(16, 16, 'Press [SPACE] to start and to go through the dialogue.', {fontSize: '32px', fill: '#000000'});
-		this.titleThing = this.add.sprite(250, 50, 'title');
+		this.titleThing = this.add.sprite(550, 200, 'title');
+		this.titleThing.scale.setTo(.5, .5);
+
+		//plays theme
+		this.titleMusic = new Phaser.Sound(game, 'titleMusic', 1, true);
+		this.titleMusic.play();
 	},
 	
 	update: function(){
 		if(this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+			this.titleMusic.stop();
 			game.state.start('Home');
 		}
 	}
