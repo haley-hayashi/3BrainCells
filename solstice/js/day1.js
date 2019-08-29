@@ -17,7 +17,9 @@ var Day1 = function(game){
 	this.cafe, this.counter, this.mug, this.serveB, this.text;
 	this.script, this.cursors, this.display; 
 	this.cake, this.croiss, this.cookie, this.brownie, this.pudding, this.pastry;
-	this.gameMusic, this.x; 
+	this.gameMusic, this.x;
+	
+	this.ingredient1Text, this.ingredient2Text; this.paycheckText;
 	
 	this.drinkNumber = 0; //keep track of which drink we're serving
 	this.ingredientCounter = 0; //keep track of how many ingredients we've used
@@ -64,6 +66,11 @@ Day1.prototype = {
 		this.machineButton = game.add.button(1425, 150, 'goMachine', this.brewCoffee, this);
 		this.machineButton.inputEnabled = true; //enable input for hand on mouseover
 		this.machineButton.input.useHandCursor = true;
+		
+		//add text interface
+		this.ingredient1Text = this.add.text(1120, 580, 'Ingredient 1 = ', {fontSize: '32px', fill: '#f5f5f5'});
+		this.ingredient2Text = this.add.text(1120, 620, 'Ingredient 2 = ', {fontSize: '32px', fill: '#f5f5f5'});
+		this.paycheckText = this.add.text(16, 16, 'Today\'s Earnings = ' + this.paycheck, {fontSize: '32px', fill: '#000000'});
 
 		//adds desserts
 		this.cake = game.add.sprite(1750, 450, 'cheesecake');
@@ -128,7 +135,6 @@ Day1.prototype = {
 	},
 	
 	update: function(){
-		
 		//moves dialogue along
 		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
 			this.continueStory();
@@ -150,15 +156,23 @@ Day1.prototype = {
 			this.physics.arcade.overlap(this.chocoSyrup, this.mug, addChocoSyrup, null, this);
 		}
 		
-		console.log(money);
+		console.log(this.paycheck);
+		this.paycheckText.text = 'Today\'s Earnings = ' + this.paycheck;
 		
 		//addGlop function
 		function addGlop(glop, mug){	
 			if(!game.input.activePointer.leftButton.isDown){	
 				glop.x = 400;
 				glop.y = 500;
-				this.ingredientCounter += 1;
 				this.drinkNumber += 1;
+				if(this.ingredientCounter == 0){
+					this.ingredient1Text.text = 'Ingredient 1 = Glop'
+					this.ingredientCounter += 1;
+				}
+				else{
+					this.ingredient2Text.text = 'Ingredient 2 = Glop'
+					this.ingredientCounter += 1;
+				}
 			}
 		}
 		
@@ -167,8 +181,15 @@ Day1.prototype = {
 			if(!game.input.activePointer.leftButton.isDown){	
 				chocoSyrup.x = 500;
 				chocoSyrup.y = 500;	
-				this.ingredientCounter += 1;
 				this.drinkNumber += 2;
+				if(this.ingredientCounter == 0){
+					this.ingredient1Text.text = 'Ingredient 1 = Choco Syrup'
+					this.ingredientCounter += 1;
+				}
+				else{
+					this.ingredient2Text.text = 'Ingredient 2 = Choco Syrup'
+					this.ingredientCounter += 1;
+				}
 			}
 		}
 	},
@@ -189,6 +210,8 @@ Day1.prototype = {
 				this.drinkNumber = 0; //reset drink and ingredients
 				this.ingredientCounter = 0;
 				this.drinkCounter += 1;
+				this.ingredient1Text.text = 'Ingredient 1 = '
+				this.ingredient2Text.text = 'Ingredient 2 = '
 			}
 			else{ //if serving anything else
 				this.mug.frame = 0;
@@ -197,6 +220,8 @@ Day1.prototype = {
 				this.drinkNumber = 0;
 				this.ingredientCounter = 0;
 				this.drinkCounter += 1;
+				this.ingredient1Text.text = 'Ingredient 1 = '
+				this.ingredient2Text.text = 'Ingredient 2 = '
 			}
 		}
 	},
