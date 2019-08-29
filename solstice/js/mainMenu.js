@@ -24,7 +24,6 @@ MainMenu.prototype = {
 		game.load.image('manager', 'assets/images/manager.png');
 		game.load.image('textBox', 'assets/images/textBox.png');
 		game.load.image('goWork', 'assets/images/leaveButton.png');
-		game.load.image('bank', 'assets/images/bankButton.png');
 		game.load.image('chocoSyrup', 'assets/images/chocoSyrup.png');
 		game.load.image('glop', 'assets/images/glop.png');
 		game.load.image('henry','assets/images/henry.png');

@@ -42,6 +42,8 @@ Day1.prototype = {
 		this.machine = game.add.sprite(1350, 700, 'coffeeMachine');
 		this.machine.anchor = new Phaser.Point(0.5, 1);
 		this.machineButton = game.add.button(1425, 150, 'goMachine', this.brewCoffee, this);
+		this.machineButton.inputEnabled = true; //enable input for hand on mouseover
+		this.machineButton.input.useHandCursor = true;
 
 		//adds desserts
 		this.cake = game.add.sprite(1750, 450, 'cheesecake');
@@ -53,12 +55,26 @@ Day1.prototype = {
 		
 
 		//add mug
-		var mug = game.add.sprite(1350, 750, 'mug');
+		var mug = game.add.sprite(1380, 480, 'mug');
 		mug.anchor = new Phaser.Point(0.5, 0.5);
 
 		//allows mug to be dragged
-		mug.inputEnabled = true;
-		mug.input.enableDrag(true);
+		//mug.inputEnabled = true;
+		//mug.input.enableDrag(true);
+		
+		//add glop and allow drag
+		var glop = game.add.sprite(400, 500, 'glop');
+		glop.inputEnabled = true;
+		glop.input.enableDrag(true);
+		glop.input.useHandCursor = true;
+		glop.scale.setTo(0.5, 0.5);
+		
+		//add chocosyrup and allow drag
+		var chocoSyrup = game.add.sprite(500, 500, 'chocoSyrup')
+		chocoSyrup.inputEnabled = true;
+		chocoSyrup.input.enableDrag(true);
+		chocoSyrup.input.useHandCursor = true;
+		chocoSyrup.scale.setTo(0.5, 0.5);
 		
 		//script 
 		this.tutorialMode = game.cache.getJSON('script');
@@ -99,7 +115,15 @@ Day1.prototype = {
         	game.camera.x += 10;
     	}
 	},
+	
+	
+	
+	
+	brewCoffee: function(){
+		
+	},
 
+//------------------- ink
 	continueStory: function(){
 		if(!this.autoContinueStory){
 			return;
@@ -162,18 +186,8 @@ Day1.prototype = {
 		});
 
 		this.choices.push(newChoice);
-	},
-
-	brewCoffee: function(){
-		if(fill = 0){
-			mug.kill();
-			//this.mug = game.add.sprite(0, 0, 'mugFill');
-			console.log('should delte')
-			fill = 1;
-		}
-		else{
-			return;
-		}
 	}
+
+//----------------------------- ink ends
 
 };
