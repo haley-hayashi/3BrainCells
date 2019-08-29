@@ -55,26 +55,29 @@ Day1.prototype = {
 		
 
 		//add mug
-		var mug = game.add.sprite(1380, 480, 'mug');
-		mug.anchor = new Phaser.Point(0.5, 0.5);
-
-		//allows mug to be dragged
-		//mug.inputEnabled = true;
-		//mug.input.enableDrag(true);
+		this.mug = game.add.sprite(1380, 480, 'mug');
+		this.mug.enableBody = true;
+		this.mug.immovable = true;
+		this.physics.arcade.enable(this.mug);
+		this.mug.anchor = new Phaser.Point(0.5, 0.5);
 		
 		//add glop and allow drag
-		var glop = game.add.sprite(400, 500, 'glop');
-		glop.inputEnabled = true;
-		glop.input.enableDrag(true);
-		glop.input.useHandCursor = true;
-		glop.scale.setTo(0.5, 0.5);
+		this.glop = game.add.sprite(400, 500, 'glop');
+		this.glop.enableBody = true;
+		this.glop.inputEnabled = true;
+		this.glop.input.enableDrag(true);
+		this.glop.input.useHandCursor = true;
+		this.physics.arcade.enable(this.glop);
+		this.glop.scale.setTo(0.5, 0.5);
 		
 		//add chocosyrup and allow drag
-		var chocoSyrup = game.add.sprite(500, 500, 'chocoSyrup')
-		chocoSyrup.inputEnabled = true;
-		chocoSyrup.input.enableDrag(true);
-		chocoSyrup.input.useHandCursor = true;
-		chocoSyrup.scale.setTo(0.5, 0.5);
+		this.chocoSyrup = game.add.sprite(500, 500, 'chocoSyrup')
+		this.chocoSyrup.enableBody = true;
+		this.chocoSyrup.inputEnabled = true;
+		this.chocoSyrup.input.enableDrag(true);
+		this.chocoSyrup.input.useHandCursor = true;
+		this.physics.arcade.enable(this.chocoSyrup);
+		this.chocoSyrup.scale.setTo(0.5, 0.5);
 		
 		//script 
 		this.tutorialMode = game.cache.getJSON('script');
@@ -100,8 +103,13 @@ Day1.prototype = {
 		//text thing
 		this.displayText = this.add.text(this.textBox.x + 20, this.textBox.y + 25, "(MANAGER waits expectingly)", this.textStyleMain);
 		this.choices = [];
+		
+		//capture mouse input for crafting
+		game.input.mouse.capture = true;
 	},
+	
 	update: function(){
+		
 		//moves dialogue along
 		if(this.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)){
 			this.continueStory();
@@ -114,15 +122,29 @@ Day1.prototype = {
    		if (this.cursors.right.isDown){
         	game.camera.x += 10;
     	}
-	},
-	
-	
-	
-	
-	brewCoffee: function(){
 		
+		//----------------------------- crafting hopefully
+		//check for collide between ingredient and mug
+		this.physics.arcade.overlap(this.glop, this.mug, addGlop, null, this);
+		this.physics.arcade.overlap(this.chocoSyrup, this.mug, addChocoSyrup, null, this);
+		
+		//addGlop function
+		function addGlop(glop, mug){	
+			if(!game.input.activePointer.leftButton.isDown){	
+				glop.x = 400;
+				glop.y = 500;	
+			}
+		}
+		
+		//chocosyrup function
+		function addChocoSyrup(chocoSyrup, mug){	
+			if(!game.input.activePointer.leftButton.isDown){	
+				chocoSyrup.x = 500;
+				chocoSyrup.y = 500;	
+			}
+		}
 	},
-
+	
 //------------------- ink
 	continueStory: function(){
 		if(!this.autoContinueStory){
