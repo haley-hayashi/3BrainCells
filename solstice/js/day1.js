@@ -6,7 +6,7 @@ var Day1 = function(game){
 	this.cake, this.croiss, this.cookie, this.brownie, this.pudding, this.pastry;
 	this.gameMusic, this.x; 
 	
-	this.drinkNumber, this.ingredientCounter = 0, this.drinkCounter;
+	this.drinkNumber = 0, this.ingredientCounter = 0, this.drinkCounter = 0;
 };
 Day1.prototype = {
 	create: function(){
@@ -43,6 +43,8 @@ Day1.prototype = {
 		//adds coffee machine
 		this.machine = game.add.sprite(1350, 700, 'coffeeMachine');
 		this.machine.anchor = new Phaser.Point(0.5, 1);
+		
+		//add go button on coffee machine
 		this.machineButton = game.add.button(1425, 150, 'goMachine', this.brewCoffee, this);
 		this.machineButton.inputEnabled = true; //enable input for hand on mouseover
 		this.machineButton.input.useHandCursor = true;
@@ -57,7 +59,7 @@ Day1.prototype = {
 		
 
 		//add mug
-		this.mug = game.add.sprite(1380, 480, 'mug');
+		this.mug = game.add.sprite(1380, 460, 'mug');
 		this.mug.enableBody = true;
 		this.mug.immovable = true;
 		this.physics.arcade.enable(this.mug);
@@ -151,9 +153,15 @@ Day1.prototype = {
 				chocoSyrup.y = 500;	
 				this.ingredientCounter += 1;
 			}
-		}	
+		}
 	},
 	
+	//brew coffee function
+	brewCoffee: function(){
+		if(this.ingredientCounter == 2){
+			this.mug.frame = 2;
+		}
+	},
 //------------------- ink
 	continueStory: function(){
 		if(!this.autoContinueStory){
