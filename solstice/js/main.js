@@ -78,6 +78,7 @@ Ending.prototype = {};
 
 //game states
 game.state.add('MainMenu', MainMenu);
+game.state.add('Load', Load);
 game.state.add('Prologue', Prologue);
 game.state.add('Home', Home);
 game.state.add('PayTime', PayTime);
@@ -92,4 +93,4 @@ game.state.add('Ending', Ending);
 
 
 //starting on Tutorial
-game.state.start('MainMenu');
+game.state.start('Load');
