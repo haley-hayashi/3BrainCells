@@ -161,7 +161,6 @@ Day1.prototype = {
 			this.physics.arcade.overlap(this.chocoSyrup, this.mug, addChocoSyrup, null, this);
 		}
 		
-		console.log(this.paycheck);
 		this.paycheckText.text = 'Today\'s Earnings = ' + this.paycheck;
 		
 		//addGlop function
@@ -208,7 +207,8 @@ Day1.prototype = {
 	},
 	
 	serveCoffee: function(){ //each order is inputted manually
-		if(this.drinkCounter == 0){ //first order
+		//first order
+		if(this.drinkCounter == 0){
 			if(this.drinkNumber == 3 && this.mug.frame == 2){ //if serving glop chocolate w/o whipped cream and go has been pressed
 				this.drinkServe.play();
 				this.profit.play();
@@ -234,6 +234,9 @@ Day1.prototype = {
 				this.ingredient2Text.text = 'Ingredient 2 = '
 			}
 		}
+		
+		//second order
+		
 	},
 	
 //------------------- ink
@@ -248,10 +251,13 @@ Day1.prototype = {
 		var delay = 0.0;
 		var completeText = "";
 
-		//where I need to break paragrpahs
-		if(this.inkTutorial.canContinue){
+		//where string is made
+		if(this.inkTutorial.canContinue){ 
 			completeText = this.inkTutorial.Continue();
-			//completeText = completeText + '\n' + paragraphText;
+			while(completeText == "\n"){
+				this.inkTutorial.Continue();
+				completeText = this.inkTutorial.Continue();
+			}
 		}
 		this.display_Text(completeText);
 		console.log(completeText);
@@ -267,6 +273,7 @@ Day1.prototype = {
 
 
 		this.currentParagraph = 0;
+
 	},
 
 	display_Text: function(text){
@@ -291,9 +298,6 @@ Day1.prototype = {
 			this.inkTutorial.ChooseChoiceIndex(obj.choiceDestination);
 			//this is where im putting choice reading
 			this.autoContinueStory = true;
-			//choiceText = this.inkTutorial.Continue();
-			//console.log(choiceText);
-			//this.display_Text(choiceText);
 			this.continueStory();
 
 		});

@@ -10,6 +10,7 @@ Load.prototype = {
 	},
 
 	create: function() {
+	
 	//black background
     game.stage.backgroundColor = '#182d3b';
 
