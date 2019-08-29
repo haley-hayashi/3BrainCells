@@ -183,6 +183,7 @@ Day1.prototype = {
 	serveCoffee: function(){ //each order is inputted manually
 		if(this.drinkCounter == 0){ //first order
 			if(this.drinkNumber == 3){ //if serving glop chocolate w/o whipped cream
+				this.mug.frame = 0;
 				money += 15;
 				this.paycheck += 15;
 				this.drinkNumber = 0; //reset drink and ingredients
@@ -190,6 +191,7 @@ Day1.prototype = {
 				this.drinkCounter += 1;
 			}
 			else{ //if serving anything else
+				this.mug.frame = 0;
 				money += 10;
 				this.paycheck += 10;
 				this.drinkNumber = 0;
