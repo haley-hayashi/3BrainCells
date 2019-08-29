@@ -54,7 +54,7 @@ Load.prototype = {
 
 		//load audio
 		game.load.audio('cafeMusic', 'assets/music/CafeBGM.mp3');
-		game.load.audio('apMusic','assets/music/ApartmentTheme.mp3');
+		game.load.audio('apMusic','assets/music/ApartmentBGM.mp3');
 		game.load.audio('titleMusic', 'assets/music/LogoScene.mp3');
 		game.load.audio('doorBell', 'assets/audio/DoorBellRings.mp3');
 		game.load.audio('doorOpen', 'assets/audio/DoorOpen.mp3');
