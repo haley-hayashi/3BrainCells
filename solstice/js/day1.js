@@ -4,7 +4,9 @@ var Day1 = function(game){
 	this.cafe, this.counter, this.mug, this.serveB, this.text;
 	this.script, this.cursors, this.display; 
 	this.cake, this.croiss, this.cookie, this.brownie, this.pudding, this.pastry;
-	this.gameMusic, this.x;
+	this.gameMusic, this.x; 
+	
+	this.drinkNumber, this.ingredientCounter = 0, this.drinkCounter;
 };
 Day1.prototype = {
 	create: function(){
@@ -125,14 +127,20 @@ Day1.prototype = {
 		
 		//----------------------------- crafting hopefully
 		//check for collide between ingredient and mug
-		this.physics.arcade.overlap(this.glop, this.mug, addGlop, null, this);
-		this.physics.arcade.overlap(this.chocoSyrup, this.mug, addChocoSyrup, null, this);
+		
+		if(this.ingredientCounter < 2){
+			this.physics.arcade.overlap(this.glop, this.mug, addGlop, null, this);
+			this.physics.arcade.overlap(this.chocoSyrup, this.mug, addChocoSyrup, null, this);
+		}
+		
+		console.log(this.ingredientCounter);
 		
 		//addGlop function
 		function addGlop(glop, mug){	
 			if(!game.input.activePointer.leftButton.isDown){	
 				glop.x = 400;
-				glop.y = 500;	
+				glop.y = 500;
+				this.ingredientCounter += 1;
 			}
 		}
 		
@@ -141,8 +149,9 @@ Day1.prototype = {
 			if(!game.input.activePointer.leftButton.isDown){	
 				chocoSyrup.x = 500;
 				chocoSyrup.y = 500;	
+				this.ingredientCounter += 1;
 			}
-		}
+		}	
 	},
 	
 //------------------- ink
