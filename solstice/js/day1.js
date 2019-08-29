@@ -209,7 +209,7 @@ Day1.prototype = {
 	
 	serveCoffee: function(){ //each order is inputted manually
 		if(this.drinkCounter == 0){ //first order
-			if(this.drinkNumber == 3){ //if serving glop chocolate w/o whipped cream
+			if(this.drinkNumber == 3 && this.mug.frame == 2){ //if serving glop chocolate w/o whipped cream and go has been pressed
 				this.drinkServe.play();
 				this.profit.play();
 				this.mug.frame = 0;
@@ -221,7 +221,9 @@ Day1.prototype = {
 				this.ingredient1Text.text = 'Ingredient 1 = '
 				this.ingredient2Text.text = 'Ingredient 2 = '
 			}
-			else{ //if serving anything else
+			else if(this.drinkNumber != 3 && this.mug.frame == 2){ //if serving anything else
+				this.drinkServe.play();
+				this.profit.play();
 				this.mug.frame = 0;
 				money += 10;
 				this.paycheck += 10;
