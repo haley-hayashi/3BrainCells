@@ -61,6 +61,7 @@ Load.prototype = {
 		game.load.audio('clink', 'assets/audio/MugClink.mp3');
 		game.load.audio('sliding', 'assets/audio/MugSliding.mp3');
 		game.load.audio('scream', 'assets/audio/scream.mp3');
+		game.load.audio('pour', 'assets/audio/pourLiquid.mp3');
 
 		//load script
 		game.load.json('script', 'assets/script/textDialogue.json');

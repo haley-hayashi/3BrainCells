@@ -41,6 +41,7 @@ Day1.prototype = {
 		//sound effects
 		this.drinkServe = new Phaser.Sound(game, 'sliding', 1, false);
 		this.profit = new Phaser.Sound(game, 'chaChing', 1, false);
+		this.pouring = new Phaser.Sound(game, 'pour', 1, false);
 
 		//add cafe background
 		this.cafe = game.add.sprite(0, 0, 'background');
@@ -159,6 +160,7 @@ Day1.prototype = {
 		//addGlop function
 		function addGlop(glop, mug){	
 			if(!game.input.activePointer.leftButton.isDown){	
+				this.pouring.play();
 				glop.x = 400;
 				glop.y = 500;
 				this.ingredientCounter += 1;
